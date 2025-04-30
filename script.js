@@ -1,5 +1,6 @@
-var scene, camera, renderer, box, clock, mixer, actions = [], mode, isWireframe = false;
+var scene, camera, renderer, box, clock, mixer, actions = [], mode, isWireframe = false, params, lights;
 let loadedModel;
+let sound;
 
 init();
 
@@ -15,16 +16,65 @@ function init() {
 
     // Set up the camera
     camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 1000 );
-  camera.position.set(-5, 25, 20);
+    camera.position.set(-5, 25, 20);
 
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
+
+
+  // Create a sound and attach it to the listener
+    sound = new THREE.Audio(listener); 
+
+  // Load a sound and set it as the buffer for the audio object
+    const audioLoader =  new THREE.AudioLoader ();
+    audioLoader.load('assets/can_opening_1_01.mp3', function (buffer) {
+        sound.setBuffer(buffer);
+        sound.setLoop(false);
+        sound.setVolume(1.0);
+    });
 
 // Add lightning
 const ambient = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
 scene.add(ambient);
 
-const light = new THREE.DirectionalLight(0xFFFFFF, 2);
-light.position.set(0, 10, 2);
-scene.add(light);
+lights = {};
+
+lights.spot = new THREE.SpotLight();
+lights.spot.visible = true;
+lights.spot.position.set(0,20,0);
+lights.spotHelper = new THREE.SpotLightHelper(lights.spot);
+lights.spotHelper.visible = false;
+scene.add(lights.spotHelper);
+scene.add(lights.spot);
+
+params = {
+    spot: {
+        enable: false,
+        color: 0xffffff,
+        distance: 20,
+        angle: Math.PI/2,
+        penumbra: 0,
+        helper: false,
+        moving: false
+    }
+}
+
+const gui = new dat.GUI({ autoPlace: false });
+const guiContainer = document.getElementById('gui-container');
+guiContainer.appendChild(gui.domElement);
+
+guiContainer.style.position = 'fixed';
+
+const spot = gui.addFolder('Spot');
+spot.open();
+spot.add(params.spot, 'enable').onChange(value => { lights.spot.visible = value });
+spot.addColor(params.spot, 'color').onChange( value => lights.spot.color = new THREE.Color(value));
+spot.add(params.spot, 'distance').min(0).max(20).onChange( value => lights.spot.distance = value);
+spot.add(params.spot, 'angle').min(0.1).max(6.28).onChange( value => lights.spot.angle = value );
+spot.add(params.spot, 'penumbra').min(0).max(1).onChange( value => lights.spot.penumbra = value );
+spot.add(params.spot, 'helper').onChange(value => lights.spotHelper.visible = value);
+spot.add(params.spot, 'moving');
+
 
 // Set up the renderer
 const canvas = document.getElementById('threeContainer');
@@ -48,6 +98,10 @@ if (actions.length === 2){
                 action.timeScale = 1;
                 action.reset();
                 action.play();
+
+                //Play sound when animation starts
+                if (sound.isPlaying) sound.stop();
+                sound.play();
         });
         }
     }
@@ -117,6 +171,13 @@ function animate() {
     }
 
     renderer.render(scene, camera);
+
+    const time = clock.getElapsedTime();
+    const delta = Math.sin(time)*5;
+    if (params.spot.moving){
+        lights.spot.position.x = delta;
+        lights.spotHelper.update();
+    }
 }
 
 function resize() {

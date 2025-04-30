@@ -3,7 +3,7 @@
     padding: 0;
     margin: 0;
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 body{
@@ -29,22 +29,17 @@ body{
     font-family: arial;   
 }
 
-#switchModel{
-    background: #fea;
-    padding: 15px;
-    font-family: arial;   
-}
-
-#playSecondModelAnimation{
-    background: #fea;
-    padding: 15px;
-    font-family: arial;   
-}
-
 #threeContainer {
     width: 100%;
     height: 100vh; position: relative;
     display: block;
     overflow: hidden;
+}
 
+
+#gui-container {
+    position: absolute;
+    top: 120px;
+    left: 10px;
+    z-index: 1000;
 }
