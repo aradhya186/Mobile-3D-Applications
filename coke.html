@@ -73,7 +73,7 @@
 
   <br>  
     
-  <div id="main_3D_image">
+  <div id="main_3d_image">
     <div id="main_text" class="col-xs-12 col-sm-4">
       <h2>Coca Cola Great Britain</h2>
       <h3>Foundation by Dr John  Pemberton</h3>
@@ -83,8 +83,56 @@
 
   <br>
 
-  <a id="btn">
-    Open can</a>
+<div class="container-fluid main-contents">
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="card" style="position: relative;">
+        <div class="card-header">
+          <h1> Lets Drink!</h1>
+        </div> 
+        </div>
+        <div class="card-body">
+    <div class="d-flex align-items-center"></div>     
+          <canvas id="threeContainer"></canvas>
+        </div>
+    <button id="btn">
+      Open Can
+    </button>
+    <button id="toggleWireframe">
+      Toggle Wireframe
+    </button>
+    <button id="Rotate">
+      Rotate
+    </button>
+    <button id="switchModel">
+      Switch Model
+    </button>
+    <button id="playSecondModelAnimation">
+      Hey. Let's recycle
+    </button>
+  </div>
+</div>
+</div>
+
+<div id="threeContainer"></div>
+
+<script>
+  // Function to update thr container size (Canvas)
+  function updateContainerSize() {
+    var container = document.getElementById('threeContainer');
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    container.width = width;
+    container.height = height;
+
+  }
+
+  window.addEventListener('load', updateContainerSize);
+  window.addEventListener('resize', updateContainerSize);
+
+</script>
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/106/three.min.js'></script>
 <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/2666677/OrbitControls.js'></script>
 <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/2666677/GLTFLoader.js'></script>

@@ -40,7 +40,8 @@ h1, h2, h3, h4, h5, h6 {
 #main_3d_image {
     background-image: url(assets/images/main_3D.jpg);
     background-repeat: no-repeat;
-    height: 201px;
+    background-size: cover;
+    height: 200px;
 }
 
 #main_text {
@@ -48,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 5%;
     width: 90%;
     display: block;
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(255,255,255,0.8);
     padding: 10px;
     border-radius: 5px;
 }
