@@ -92,7 +92,7 @@ controls.update();
 mode = 'open';
 const btn = document.getElementById("btn");
 btn.addEventListener('click', function() {
-if (actions.length === 1){
+if (actions.length === 2){
     if (mode=== "open") {
         actions.forEach(action => {
                 action.timeScale = 1;

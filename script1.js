@@ -16,7 +16,7 @@ function init() {
 
     // Set up the camera
     camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    camera.position.set(-5, 25, 20);
+    camera.position.set(-5, 8, 8);
 
     const listener = new THREE.AudioListener();
     camera.add(listener);
@@ -27,7 +27,7 @@ function init() {
 
   // Load a sound and set it as the buffer for the audio object
     const audioLoader =  new THREE.AudioLoader ();
-    audioLoader.load('assets/can_opening_1_01.mp3', function (buffer) {
+    audioLoader.load('assets/cap_opening.mp3', function (buffer) {
         sound.setBuffer(buffer);
         sound.setLoop(false);
         sound.setVolume(1.0);
