@@ -130,7 +130,7 @@ rotateBtn.addEventListener('click', function () {
 
 // Load the glTF model
 const loader = new THREE.GLTFLoader();
-loader.load(assetPath + 'assets/cup_pouring.glb', function(gltf){
+loader.load(assetPath + 'assets/glass1.glb', function(gltf){
     const model = gltf.scene;
     scene.add(model);
 
