@@ -16,7 +16,7 @@ function init() {
 
     // Set up the camera
     camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    camera.position.set(-5, 25, 20);
+    camera.position.set(-5, 10, 5);
 
     const listener = new THREE.AudioListener();
     camera.add(listener);
@@ -92,7 +92,7 @@ controls.update();
 mode = 'open';
 const btn = document.getElementById("btn");
 btn.addEventListener('click', function() {
-if (actions.length === 2){
+if (actions.length === 1){
     if (mode=== "open") {
         actions.forEach(action => {
                 action.timeScale = 1;
@@ -130,7 +130,7 @@ rotateBtn.addEventListener('click', function () {
 
 // Load the glTF model
 const loader = new THREE.GLTFLoader();
-loader.load(assetPath + 'assets/glass1.glb', function(gltf){
+loader.load(assetPath + 'assets/coffe_cafe.glb', function(gltf){
     const model = gltf.scene;
     scene.add(model);
 
