@@ -130,7 +130,7 @@ rotateBtn.addEventListener('click', function () {
 
 // Load the glTF model
 const loader = new THREE.GLTFLoader();
-loader.load(assetPath + 'assets/coffe_cafe.glb', function(gltf){
+loader.load(assetPath + 'assets/dr_pepper_glass.glb', function(gltf){
     const model = gltf.scene;
     scene.add(model);
 
