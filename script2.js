@@ -27,14 +27,14 @@ function init() {
 
   // Load a sound and set it as the buffer for the audio object
     const audioLoader =  new THREE.AudioLoader ();
-    audioLoader.load('assets/can_opening_1_01.mp3', function (buffer) {
+    audioLoader.load('assets/glass-bend-35101_01.mp3', function (buffer) {
         sound.setBuffer(buffer);
         sound.setLoop(false);
         sound.setVolume(1.0);
     });
 
 // Add lightning
-const ambient = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+const ambient = new THREE.HemisphereLight(0xffffbb, 0x080820, 3);
 scene.add(ambient);
 
 lights = {};

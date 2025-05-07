@@ -34,7 +34,7 @@ function init() {
     });
 
 // Add lightning
-const ambient = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+const ambient = new THREE.HemisphereLight(0xffffbb, 0x080820, 2);
 scene.add(ambient);
 
 lights = {};
